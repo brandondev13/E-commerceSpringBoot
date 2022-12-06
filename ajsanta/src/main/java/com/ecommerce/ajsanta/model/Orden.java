@@ -1,14 +1,31 @@
 package com.ecommerce.ajsanta.model;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity(name = "ordenes")
 public class Orden {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String numero;
     private Date fechaCreacion;
     private Date fechaRecibida;
-
     private double total;
+
+
+    // Relación muchos a uno // De usuario
+    @ManyToOne
+    private Usuario usuario;
+
+
+
+    // Relación uno a uno // DetalleOrden
+    @OneToOne(mappedBy = "orden")
+    private DetalleOrden detalleOrden;
+
+
 
     public Orden() {
     }
@@ -20,6 +37,8 @@ public class Orden {
         this.fechaRecibida = fechaRecibida;
         this.total = total;
     }
+
+
 
     public Integer getId() {
         return id;
@@ -59,6 +78,22 @@ public class Orden {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public DetalleOrden getDetalleOrden() {
+        return detalleOrden;
+    }
+
+    public void setDetalleOrden(DetalleOrden detalleOrden) {
+        this.detalleOrden = detalleOrden;
     }
 
     @Override
