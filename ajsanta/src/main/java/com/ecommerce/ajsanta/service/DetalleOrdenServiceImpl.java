@@ -10,7 +10,7 @@ public class DetalleOrdenServiceImpl implements IDetalleOrdenService {
 
     @Autowired
     private IDetalleOrdenService detalleOrdenService;
-    
+
     @Override
     public DetalleOrden save(DetalleOrden detalleOrden) {
         return detalleOrdenService.save(detalleOrden);
