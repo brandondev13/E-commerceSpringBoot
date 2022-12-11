@@ -3,6 +3,8 @@ package com.ecommerce.ajsanta.controller;
 import com.ecommerce.ajsanta.model.DetalleOrden;
 import com.ecommerce.ajsanta.model.Orden;
 import com.ecommerce.ajsanta.model.Producto;
+import com.ecommerce.ajsanta.model.Usuario;
+import com.ecommerce.ajsanta.service.IUsuarioService;
 import com.ecommerce.ajsanta.service.ProductoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,9 @@ public class HomeController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private IUsuarioService usuarioService;
 
     // Para almaenar los detalles de la orden
     List<DetalleOrden> detalles = new ArrayList<>();
@@ -123,7 +128,13 @@ public class HomeController {
 
 
     @GetMapping("/order")
-    public String order() {
+    public String order(Model model) {
+        Usuario usuario = usuarioService.findById(1).get();
+
+        model.addAttribute("cart", detalles);
+        model.addAttribute("orden", orden);
+        model.addAttribute("usuario", usuario);
+
         return "usuario/resumenorden";
     }
 
