@@ -54,7 +54,7 @@ public class UsuarioController {
         // LOGGER.info("Usuario de db: {}", user.get());
 
         if(user.isPresent()) {
-            session.setAttribute("idUsuario", user.get().getId());
+            session.setAttribute("idusuario", user.get().getId());
             if(user.get().getTipo().equals("ADMIN")) {
                 return "redirect:/administrador";
             } else {
