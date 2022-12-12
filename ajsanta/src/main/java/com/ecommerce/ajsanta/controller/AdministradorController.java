@@ -1,6 +1,7 @@
 package com.ecommerce.ajsanta.controller;
 
 import com.ecommerce.ajsanta.model.Producto;
+import com.ecommerce.ajsanta.service.IUsuarioService;
 import com.ecommerce.ajsanta.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class AdministradorController {
     @Autowired
     private ProductoService productoService;
 
+    @Autowired
+    private IUsuarioService usuarioService;
+
     @GetMapping("")
     public String home(Model model) {
 
@@ -25,6 +29,15 @@ public class AdministradorController {
 
         return "administrador/home";
     }
+
+    @GetMapping("/usuarios")
+    public String usuarios(Model model) {
+
+        model.addAttribute("usuarios", usuarioService.findAll());
+
+        return "administrador/usuarios";
+    }
+
 
 
 
