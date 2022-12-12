@@ -1,6 +1,7 @@
 package com.ecommerce.ajsanta.controller;
 
 import com.ecommerce.ajsanta.model.Producto;
+import com.ecommerce.ajsanta.service.IOrdenService;
 import com.ecommerce.ajsanta.service.IUsuarioService;
 import com.ecommerce.ajsanta.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class AdministradorController {
     @Autowired
     private IUsuarioService usuarioService;
 
+    @Autowired
+    private IOrdenService ordenService;
+
     @GetMapping("")
     public String home(Model model) {
 
@@ -36,6 +40,14 @@ public class AdministradorController {
         model.addAttribute("usuarios", usuarioService.findAll());
 
         return "administrador/usuarios";
+    }
+
+    @GetMapping("/ordenes")
+    public String ordenes(Model model) {
+
+        model.addAttribute("ordenes", ordenService.findAll());
+
+        return "administrador/ordenes";
     }
 
 
