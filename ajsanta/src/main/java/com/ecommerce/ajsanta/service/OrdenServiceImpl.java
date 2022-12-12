@@ -2,6 +2,7 @@ package com.ecommerce.ajsanta.service;
 
 
 import com.ecommerce.ajsanta.model.Orden;
+import com.ecommerce.ajsanta.model.Usuario;
 import com.ecommerce.ajsanta.repository.IOrdenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,4 +56,13 @@ public class OrdenServiceImpl implements IOrdenService {
 
         return numeroConcatenado;
     }
+
+    @Override
+    public List<Orden> finByUsuario(Usuario usuario) {
+
+
+        return ordenRepository.findByUsuario(usuario);
+    }
+
+
 }

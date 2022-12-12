@@ -15,8 +15,8 @@ public class DetalleOrden {
     private double total;
 
 
-    // Relación uno a uno // Orden
-    @OneToOne
+    // Relación muchos a uno // Orden
+    @ManyToOne
     private Orden orden;
 
     // Relación muchos a uno // Muchos Productos van a estar en un DetalleOrden

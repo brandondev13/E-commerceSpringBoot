@@ -3,6 +3,7 @@ package com.ecommerce.ajsanta.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "ordenes")
 public class Orden {
@@ -21,9 +22,9 @@ public class Orden {
 
 
 
-    // Relación uno a uno // DetalleOrden
-    @OneToOne(mappedBy = "orden")
-    private DetalleOrden detalleOrden;
+    // Relación uno a Muchos // DetalleOrden
+    @OneToMany(mappedBy = "orden")
+    private List<DetalleOrden> detalleOrden;
 
 
 
@@ -88,11 +89,12 @@ public class Orden {
         this.usuario = usuario;
     }
 
-    public DetalleOrden getDetalleOrden() {
+
+    public List<DetalleOrden> getDetalleOrden() {
         return detalleOrden;
     }
 
-    public void setDetalleOrden(DetalleOrden detalleOrden) {
+    public void setDetalleOrden(List<DetalleOrden> detalleOrden) {
         this.detalleOrden = detalleOrden;
     }
 
