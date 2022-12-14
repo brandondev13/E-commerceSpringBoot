@@ -29,7 +29,7 @@ public class AdministradorController {
     @Autowired
     private IOrdenService ordenService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AdministradorController.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(AdministradorController.class);
 
 
     @GetMapping("")

@@ -4,10 +4,10 @@ import com.ecommerce.ajsanta.model.Orden;
 import com.ecommerce.ajsanta.model.Usuario;
 import com.ecommerce.ajsanta.service.IOrdenService;
 import com.ecommerce.ajsanta.service.IUsuarioService;
-import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,8 @@ public class UsuarioController {
     @Autowired
     private IOrdenService ordenService;
 
+    BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+
 
     // /usuario/registro
     @GetMapping("/registro")
@@ -42,6 +45,7 @@ public class UsuarioController {
     public String save(Usuario usuario) {
         LOGGER.info("Usuario registro: {}", usuario);
         usuario.setTipo("USER");
+        usuario.setPassword(passEncoder.encode(usuario.getPassword() ));
         usuarioService.save(usuario);
 
         return "redirect:/";
